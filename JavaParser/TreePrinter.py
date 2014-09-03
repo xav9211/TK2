@@ -13,10 +13,11 @@ class TreePrinter:
 
     @addToClass(AST.Node)
     def printTree(self):
-        raise Exception("printTree not defined in class " + self.__class__.__name__)
+        result = ""
+        return result
 
 
-    @addToClass(AST.BinExpr)
+    @addToClass(AST.Program)
     def printTree(self):
-        pass
-        # ...
+        result = ""
+        # dokonczyc
