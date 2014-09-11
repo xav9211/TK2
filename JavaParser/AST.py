@@ -9,14 +9,8 @@ class Node(object):
     
 
 class Program(Node):
-    def __init__(self, access, type, id, inherited, body):
-        self.access = access
-        self.type = type
-        self.id = id
-        self.inherited = inherited
-        self.body = body
-        
-
+    def __init__(self, typeDeclatations = None):
+        self.typeDeclarations = typeDeclatations
 
 class Inherited(Node):
     def __init__(self,extend = None,implements = None):

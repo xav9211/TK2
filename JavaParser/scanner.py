@@ -26,17 +26,25 @@ class Scanner(object):
 
 
     reserved = {
+    'class'     : 'CLASS',
+    'interface' : 'INTERFACE',
     'implements' : 'IMPLEMENTS',
-    'extends'   : 'EXTENDS'
+    'extends'   : 'EXTENDS',
+    'abstract'  : 'ABSTRACT',
+    'final'     : 'FINAL'
     }
 
 
-    tokens = [ "ACCESS", "TYPE", "ID", "BODY" ] + reserved.values()
+    tokens = [ "ACCESS", "ID", "BODY" ] + reserved.values()
 
 
     t_ignore = ' \t\f'
+    t_CLASS = r'class'
+    t_INTERFACE = r'interface'
     t_IMPLEMENTS = r'implements'
     t_EXTENDS = r'extends'
+    t_ABSTRACT = r'abstract'
+    t_FINAL = r'final'
 
     def t_newline(self,t):
         r'\n+'
@@ -62,10 +70,6 @@ class Scanner(object):
 
     def t_ACCESS(self, t):
         r'private|protected|public'
-        return t
-
-    def t_TYPE(self, t):
-        r'class|interface'
         return t
 
     def t_ID(self, t):
