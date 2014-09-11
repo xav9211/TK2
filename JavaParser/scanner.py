@@ -27,14 +27,16 @@ class Scanner(object):
 
     reserved = {
     'implements' : 'IMPLEMENTS',
-    'extends'   : 'EXTENDS',
+    'extends'   : 'EXTENDS'
     }
 
 
-    tokens = [ "ACCESS", "TYPE", "ID", "BODY:",  ] + list(reserved.values())
+    tokens = [ "ACCESS", "TYPE", "ID", "BODY" ] + reserved.values()
 
 
     t_ignore = ' \t\f'
+    t_IMPLEMENTS = r'implements'
+    t_EXTENDS = r'extends'
 
     def t_newline(self,t):
         r'\n+'
@@ -59,18 +61,18 @@ class Scanner(object):
         t.lexer.lineno += t.value.count('\n')
 
     def t_ACCESS(self, t):
-        r"\b(private|protected|public)\b"
+        r'private|protected|public'
         return t
 
     def t_TYPE(self, t):
-        r"\b((abstract? class)|interface)\b"
+        r'class|interface'
         return t
 
     def t_ID(self, t):
-        r"[a-zA-Z_]\w*"
+        r'[A-Z]\w*'
         t.type = Scanner.reserved.get(t.value, 'ID')
         return t
 
     def t_BODY(self, t):
-        r"{\w*}"
+        r'{(\n*|.*)*}'
         return t

@@ -2,6 +2,7 @@
 
 from scanner import Scanner
 import AST
+import TreePrinter
 
 class Cparser(object):
 
@@ -9,6 +10,7 @@ class Cparser(object):
     def __init__(self):
         self.scanner = Scanner()
         self.scanner.build()
+        self.tree = None
 
     tokens = Scanner.tokens
 
@@ -35,20 +37,39 @@ class Cparser(object):
 
     def p_program(self, p):
         """program : ACCESS TYPE ID inherited BODY"""
+        p[0] = AST.Program( p[1],p[2],p[3],p[4], p[5])
+        
+        print p[0]
+        
 
     def p_inherited(self, p):
-        """inherited : extend implements
-                    | implements extend
-                    | extend
+        """inherited : extends implements
+                    | extends
                     | implements
                     | """
+        if len(p)==2 :
+            p[0] = AST.Inherited(p[1])
+        
+        elif len(p)> 2:
+            p[0] = AST.Inherited(p[1],p[2])
+        else:
+            p[0] = AST.Inherited()
+         
+        print p[0]   
+        
 
-    def p_extend(self, p):
-        """extend : EXTENDS ID"""
+    def p_extends(self, p):
+        """extends : EXTENDS ID"""
+        p[0] = AST.Extend(p[2])
 
     def p_implements(self, p):
-        """implements : implements implement
-                    | """
+        """implements : IMPLEMENTS implement """
+        p[0] = AST.Implements(p[2])
 
-    def implement(self, p):
-        """implement : IMPLEMENTS ID"""
+    def p_implement(self, p):
+        """implement : implement ',' ID
+                    | ID """
+        if len(p)==2:
+            p[0] = AST.Implement(p[1])
+        else:
+            p[0] = AST.Implement(p[3], p[1])

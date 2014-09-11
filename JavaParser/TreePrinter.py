@@ -8,16 +8,53 @@ def addToClass(cls):
         return func
     return decorator
 
+def addIndent(indent):
+    result = ""
+    i = 0
+    while i < indent:
+        result += " "
+        i += 1
+    return result
 
 class TreePrinter:
 
     @addToClass(AST.Node)
-    def printTree(self):
-        result = ""
+    def printTree(self, indent):
+        result = addIndent(indent)
         return result
 
-
+   
+    
     @addToClass(AST.Program)
-    def printTree(self):
+    def printTree(self, indent):
         result = ""
-        # dokonczyc
+        result += self.access
+        result += self.type
+        result += self.id
+        result += self.inherited.printTree(indent)
+        result += self.body
+        
+        
+        
+        return result
+    
+    @addToClass(AST.Inherited)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+    
+    
+    @addToClass(AST.Implement)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+    
+    @addToClass(AST.Implements)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+    
+    @addToClass(AST.Extend)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
