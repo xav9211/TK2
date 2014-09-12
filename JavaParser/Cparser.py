@@ -63,7 +63,7 @@ class Cparser(object):
             p[0] = AST.TypeDeclaration()
 
     def p_classDeclaration(self, p):
-        """classDeclaration : classModifier CLASS ID inherited BODY"""
+        """classDeclaration : classModifier CLASS ID inherited classBody"""
         p[0] = AST.ClassDeclaration(p[1], p[3], p[4], p[5])
 
     def p_classModifier(self, p):
@@ -74,7 +74,7 @@ class Cparser(object):
         if len(p) == 2:
             p[0] = AST.ClassModifier(p[1])
         elif len(p) > 2:
-            p[0] = AST.ClassModifier(p[2], p[1])
+            p[0] = AST.ClassModifier(p[1], p[2])
         else:
             p[0] = AST.ClassModifier()
 
@@ -114,6 +114,42 @@ class Cparser(object):
             p[0] = AST.Implement(p[1])
         else:
             p[0] = AST.Implement(p[3], p[1])
+
+    def p_classBody(self, p):
+        """classBody : '{' classBodyDeclarations '}'
+                    | '{'   '}' """
+        if len(p) > 3:
+            p[0] = AST.ClassBody(p[2])
+        else:
+            p[0] = AST.ClassBody()
+
+    def p_classBodyDeclarations(self, p):
+        """classBodyDeclarations : classBodyDeclaration
+                                | classBodyDeclarations classBodyDeclaration"""
+        if len(p) == 2:
+            p[0] = AST.ClassBodyDeclarations(p[1])
+        else:
+            p[0] = AST.ClassBodyDeclarations(p[2], p[1])
+
+    def p_classBodyDeclaration(self, p):
+        """classBodyDeclaration : classMemberDeclaration
+                                | constructorDeclaration"""
+        p[0] = AST.ClassBodyDeclaration(p[1])
+
+    def p_classMemberDeclaration(self, p):
+        """classMemberDeclaration : fieldDeclaration
+                                | methodDeclaration"""
+        p[0] = AST.ClassMemeberDeclaration(p[1])
+
+    def p_constructorDeclaration(self, p):
+        """constructorDeclaration : ACCESS constructorDeclarator constructorBody
+                                | constructorDeclarator constructorBody"""
+        if len(p) == 3:
+            p[0] = AST.ConstructorDeclaration(p[1], p[2])
+        else:
+            p[0] = AST.ConstructorDeclaration(p[2], p[3], p[1])
+
+
 
     def p_interfaceDeclaration(self, p):
         """interfaceDeclaration : interfaceModifier INTERFACE ID extendsInterfaces BODY"""
