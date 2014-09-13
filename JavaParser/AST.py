@@ -76,18 +76,87 @@ class ClassMemeberDeclaration(Node):
         self.methodDeclaration = methodDeclaration
 
 class ConstructorDeclaration(Node):
-    def __init__(self, constructorDeclarator, constructorBody, access = None):
+    def __init__(self, constructorDeclarator, body, access = None):
         self.constructorDeclarator = constructorDeclarator
-        self.constructorBody = constructorBody
+        self.body = body
 
+class ConstructorDeclarator(Node):
+    def __init__(self, id, parameterList = None):
+        self.id = id
+        self.parameterList = parameterList
 
+class ParameterList(Node):
+    def __init__(self, parameter, parameterList = None):
+        self.parameter = parameter
+        self.parameterList = parameterList
+
+class Parameter(Node):
+    def __init__(self, type, varid):
+        self.type = type
+        self.varid = varid
+
+class FieldDclaration(Node):
+    def __init__(self, types, variableDeclarator, fieldModifiers):
+        self.types = types
+        self.variableDeclarator = variableDeclarator
+        self.fieldModifiers = fieldModifiers
+
+class FieldModifiers(Node):
+    def __init__(self, access = None, fieldModifier = None):
+        self.access = access
+        self.fieldModifier = fieldModifier
+
+class FieldModifier(Node):
+    pass
+
+class Types(Node):
+    def __init__(self, access = None, id = None):
+        self.access = access
+        self.id = id
+
+class VariableDeclarator(Node):
+    def __init__(self, varid = None, variableDeclarator = None):
+        self.varid = varid
+        self.variableDeclarator = variableDeclarator
+
+class MethodDeclaration(Node):
+    def __init__(self, methodHeader, body):
+        self.methodHeader = methodHeader
+        self.body = body
+
+class MethodHeader(Node):
+    def __init__(self, mTypes, methodDeclarator, methodModifiers = None):
+        self.mTypes = mTypes
+        self.methodDeclarator = methodDeclarator
+        self.methodModifiers =methodModifiers
+
+class MTypes(Node):
+    def __init__(self, types = None, voids = None):
+        self.types = types
+        self.voids = voids
+
+class Voids(Node):
+    pass
+
+class MethodModifiers(Node):
+    def __init__(self, access = None, methodModifier = None):
+        self.access = access
+        self.methodModifier = methodModifier
+
+class MethodModifier(Node):
+    pass
+
+class MethodDeclarator(Node):
+    def __init__(self, varid, parameterList):
+        self.varid = varid
+        self.parameterList = parameterList
 
 class InterfaceDeclaration(Node):
-    def __init__(self, interfaceModifier, id, extendsInterfaces, body):
+    def __init__(self, interfaceModifier, id, extendsInterfaces, interfaceBody):
         self.interfaceModifier =interfaceModifier
         self.id = id
         self.extendsInterfaces = extendsInterfaces
-        self.body = body
+        self.interfaceBody = interfaceBody
 
 class InterfaceModifier(Node):
     def __init__(self, access = None):
@@ -97,3 +166,18 @@ class ExtendsInterfaces(Node):
     def __init__(self, id, extendsInterfaces = None):
         self.id = id
         self.extendsInterfaces = extendsInterfaces
+
+class InterfaceBody(Node):
+    def __init__(self, interfaceBodyDeclarations = None):
+        self.interfaceBodyDeclarations = interfaceBodyDeclarations
+
+class InterfaceBodyDeclarations(Node):
+    def __init__(self, interfaceBodyDeclaration, interFaceBodyDeclarations = None):
+        self.interfaceBodyDeclaration = interfaceBodyDeclaration
+        self.interfaceBodyDeclarations = interFaceBodyDeclarations
+
+class InterfaceBodyDeclaration(Node):
+    def __init__(self, fieldModifiers, types, varid):
+        self.fieldModifiers = fieldModifiers
+        self.types = types
+        self.varid = varid
