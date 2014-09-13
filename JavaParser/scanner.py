@@ -26,17 +26,31 @@ class Scanner(object):
 
 
     reserved = {
+    'class'     : 'CLASS',
+    'interface' : 'INTERFACE',
     'implements' : 'IMPLEMENTS',
-    'extends'   : 'EXTENDS'
+    'extends'   : 'EXTENDS',
+    'abstract'  : 'ABSTRACT',
+    'final'     : 'FINAL',
+    'static'    : 'STATIC',
+    'synchronized' : 'SYNCHRONIZED',
+    'void'      : 'VOID'
     }
 
 
-    tokens = [ "ACCESS", "TYPE", "ID", "BODY" ] + reserved.values()
+    tokens = [ "ACCESS", "ID", "BODY", "VARID", "TYPE" ] + reserved.values()
 
 
     t_ignore = ' \t\f'
+    t_CLASS = r'class'
+    t_INTERFACE = r'interface'
     t_IMPLEMENTS = r'implements'
     t_EXTENDS = r'extends'
+    t_ABSTRACT = r'abstract'
+    t_FINAL = r'final'
+    t_STATIC = r'static'
+    t_SYNCHRONIZED = r'synchronized'
+    t_VOID = r'void'
 
     def t_newline(self,t):
         r'\n+'
@@ -65,12 +79,17 @@ class Scanner(object):
         return t
 
     def t_TYPE(self, t):
-        r'class|interface'
+        r'\b(int|short|long|float|double|boolean|char|String)\b'
         return t
 
     def t_ID(self, t):
         r'[A-Z]\w*'
         t.type = Scanner.reserved.get(t.value, 'ID')
+        return t
+
+    def t_VARID(self, t):
+        r'[a-z_]\w*'
+        t.type = Scanner.reserved.get(t.value, 'VARID')
         return t
 
     def t_BODY(self, t):
