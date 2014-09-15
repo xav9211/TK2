@@ -38,7 +38,7 @@ class Scanner(object):
     }
 
 
-    tokens = [ "ACCESS", "ID", "BODY", "VARID", "TYPE" ] + reserved.values()
+    tokens = [ "ACCESS", "TYPE", "ID", "VARID", "BODY" ] + reserved.values()
 
 
     t_ignore = ' \t\f'
