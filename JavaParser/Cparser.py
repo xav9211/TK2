@@ -198,8 +198,12 @@ class Cparser(object):
 
     def p_variableDeclarator(self, p):
         """variableDeclarator : VARID
-                                | variableDeclarator '[' ']' """
-        p[0] = AST.VariableDeclarator(p[1])
+                                | variableDeclarator '[' ']'
+                                | VARID '<' type '>' """
+        if len(p) > 4:
+            p[0] = AST.VariableDeclarator(p[1], p[3])
+        else:
+            p[0] = AST.VariableDeclarator(p[1])
 
     def p_methodDeclaration(self, p):
         """methodDeclaration : methodHeader BODY"""
