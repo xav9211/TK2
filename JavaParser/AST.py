@@ -115,9 +115,10 @@ class Types(Node):
         self.id = id
 
 class VariableDeclarator(Node):
-    def __init__(self, varid = None, variableDeclarator = None):
+    def __init__(self, varid = None, variableDeclarator = None, type = None):
         self.varid = varid
         self.variableDeclarator = variableDeclarator
+        self.type = type
 
 class MethodDeclaration(Node):
     def __init__(self, methodHeader, body):
