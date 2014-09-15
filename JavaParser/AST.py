@@ -107,6 +107,14 @@ class FieldModifiers(Node):
         self.fieldModifier = fieldModifier
 
 class FieldModifier(Node):
+    def __init__(self, fieldModiferStatic = None, fieldModifierFinal = None):
+        self.fieldModifierStatic = fieldModiferStatic
+        self.fieldModifierFinal = fieldModifierFinal
+
+class FieldModifierStatic(Node):
+    pass
+
+class FieldModifierFinal(Node):
     pass
 
 class Types(Node):
@@ -115,10 +123,10 @@ class Types(Node):
         self.id = id
 
 class VariableDeclarator(Node):
-    def __init__(self, varid = None, variableDeclarator = None, type = None):
+    def __init__(self, varid = None, variableDeclarator = None, types = None):
         self.varid = varid
         self.variableDeclarator = variableDeclarator
-        self.type = type
+        self.types = types
 
 class MethodDeclaration(Node):
     def __init__(self, methodHeader, body):
@@ -145,6 +153,16 @@ class MethodModifiers(Node):
         self.methodModifier = methodModifier
 
 class MethodModifier(Node):
+    def __init__(self, fieldModifier = None, methodModifier = None, methodModifierAbstract = None, methodModifierSynchronized = None):
+        self.fieldModifier = fieldModifier
+        self.methodModifier = methodModifier
+        self.methodModifierAbstract = methodModifierAbstract
+        self.methodModifierSynchronized = methodModifierSynchronized
+
+class MethodModifierAbstract(Node):
+    pass
+
+class MethodModifierSynchronized(Node):
     pass
 
 class MethodDeclarator(Node):

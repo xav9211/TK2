@@ -28,14 +28,36 @@ class TreePrinter:
     @addToClass(AST.Program)
     def printTree(self, indent):
         result = ""
-        result += self.access
-        result += self.type
-        result += self.id
-        result += self.inherited.printTree(indent)
-        result += self.body
+        result = addIndent(indent)
+        return result
         
         
         
+        return result
+
+    @addToClass(AST.TypeDeclarations)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.TypeDeclaration)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.ClassDeclaration)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.ClassModifier)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.Modifier)
+    def printTree(self, indent):
+        result = addIndent(indent)
         return result
     
     @addToClass(AST.Inherited)
@@ -55,6 +77,146 @@ class TreePrinter:
         return result
     
     @addToClass(AST.Extend)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.ClassBody)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.ClassBodyDeclarations)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.ClassBodyDeclaration)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.ClassMemeberDeclaration)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.ConstructorDeclaration)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.ConstructorDeclarator)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.ParameterList)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.Parameter)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.FieldDclaration)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.FieldModifiers)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.FieldModifier)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.FieldModifierStatic)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.FieldModifierFinal)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.Types)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.VariableDeclarator)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.MethodDeclaration)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.MethodHeader)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.MTypes)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.Voids)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.MethodModifiers)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.MethodModifier)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.MethodDeclarator)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.InterfaceDeclaration)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.InterfaceModifier)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.ExtendsInterfaces)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.InterfaceBody)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.InterfaceBodyDeclarations)
+    def printTree(self, indent):
+        result = addIndent(indent)
+        return result
+
+    @addToClass(AST.InterfaceBodyDeclaration)
     def printTree(self, indent):
         result = addIndent(indent)
         return result
